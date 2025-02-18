@@ -1,0 +1,240 @@
+{% extends './navbar.html' %}
+{% load static %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: black;
+        color: white;
+    }
+    
+    .contact-section {
+        padding: 50px 20px;
+        background-color: black;
+        text-align: center;
+    }
+    
+    
+    
+    .contact-section p {
+        font-size: 18px;
+        color: #ccc;
+        margin-bottom: 40px;
+        line-height: 1.6;
+    }
+    
+    .contact-details {
+        font-size: 40px;
+        font-weight: bold;
+        margin-bottom: 60px;
+        margin-top: 40px;
+        font-family: "Itronz", sans-serif;
+        color: white;
+    }
+    
+    .contact-details span {
+        display: inline-block;
+        margin: 0 20px;
+        color: white;
+    }
+    
+    .form-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: #111;
+        padding: 30px;
+        border-radius: 0px;
+        box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+        font-size: 30px;
+        font-family: "Calton", sans-serif;
+        color: white;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        width: 95%;
+        padding: 12px 15px;
+        border: 1px solid #444;
+        border-radius: 0px;
+        font-size: 16px;
+        background: #222;
+        color: white;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+        color: #888;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border-color: #0097b2;
+        box-shadow: 0 0 6px rgba(0, 151, 178, 0.5);
+        outline: none;
+    }
+    
+    .form-group label {
+        margin-bottom: 8px;
+        display: block;
+        font-weight: bold;
+        color:red;
+        text-shadow: 0 0 10px #FF4500;
+    }
+    
+    .submit-button {
+        background-color: 	#d40101;
+        padding: 12px 20px;
+        align-items: center;
+        font-size: 30px;
+        border-radius: 50px;
+        cursor: pointer;
+        margin-top: 30px;
+        color:#023F2F;
+        font-weight: bold;
+        font-family: 'Calton',sans-serif;
+        display: inline-block;
+        align-self: center;
+        
+        transition: background-color 0.3s ease;
+        
+    }
+    
+    .submit-button:hover {
+        background-color: red;
+    }
+    
+    .form-container form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .form-container form input,
+    .form-container form textarea {
+        font-family: "Itronz", sans-serif;
+    }
+    
+    /* Styling for the office info section */
+    .contact-header {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #222;
+        color: white;
+        padding: 10px 0;
+        margin-top: 30px;
+    }
+    
+    .contact-header div {
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+    }
+    
+    .contact-header div i {
+        margin-right: 8px;
+        color: white;
+    }
+    .contact-info {
+        display: flex;
+        justify-content: space-between; /* Distribute items horizontally */
+        align-items: center;
+        margin-bottom: 20px; /* Space below the contact info */
+    }
+    
+    .contact-item {
+        font-size: 36px;
+        margin-right: 20px; /* Space between the contact items */
+    }
+    
+    .social-media-links {
+        display: flex;
+        justify-content:center; /* Space the icons evenly */
+         /* Space below the icons */
+    }
+    
+    .social-media-links a {
+        font-size: 20px;
+        margin-right: 15px; /* Space between the social media icons */
+    }
+    
+    
+</style>
+
+<!-- Contact Section -->
+<div class="contact-section" style="margin-top:60px">
+    <h2 class="flame-animation">Contact Us</h2>
+    <svg width="0" height="0">
+        <defs>
+            <filter id="fire">
+                <!-- Turbulence Effect -->
+                <feTurbulence type="fractalNoise" baseFrequency="0.1 0.1" numOctaves="3" seed="3">
+                    <!-- Animate the baseFrequency to create flickering effect -->
+                    <animate attributeName="baseFrequency" 
+                             dur="3s" 
+                             values="0.1 0.1; 0.12 0.2; 0.1 0.1" 
+                             repeatCount="indefinite"/>
+                </feTurbulence>
+    
+                <!-- Displacement Effect -->
+                <feDisplacementMap in="SourceGraphic" scale="10"/>
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- Added office details in a horizontal row -->
+    
+
+    <h2 style="font-size:45px;">We'd love to hear from you! Please fill out the form below and we'll get back to you shortly.</h2>
+    <div class="form-container">
+        
+        <div class="contact-info">
+            
+            <h2 class="contact-item">khorsani@gmail.com</h2>
+            <h2 class="contact-item">9818326492</h2>
+        </div>
+        
+        <div class="social-media-links">
+            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/khoorsani/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+
+        <form action="{% url 'store:contactc' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+                <label for="mobile">Phone Number</label>
+                <input type="text" id="mobile" name="mobile" placeholder="Your Phone Number" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Message</label>
+                <textarea id="description" name="description" rows="5" placeholder="We would love to hear from you" required></textarea>
+            </div>
+            <button type="submit" class="submit-button">Send Message</button>
+        </form>
+    </div>
+</div>
+
+<!-- Contact Info below form -->
+
+{% endblock %}

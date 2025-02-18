@@ -1,0 +1,141 @@
+{% extends './navbar.html' %}
+{% load static %}
+
+{% block title %}{{ product.title }}{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-color: black;
+        color: white;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .product-detail {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 1000px;
+        margin: auto;
+        padding: 50px 20px;
+        gap: 40px;
+        margin-top:60px
+    }
+    .product-image img {
+        width: 100%;
+        max-width: 400px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    }
+    .product-info {
+        max-width: 500px;
+        text-align: center;
+        
+    }
+    .product-title {
+        font-size: 52px;
+        margin-bottom: 10px;
+        
+    }
+    .product-price {
+        font-size: 44px;
+        color: #ff4500;
+        margin-bottom: 15px;
+        text-align:center;
+    }
+    .product-description {
+        font-size: 20px;
+        line-height: 1.6;
+        color:#EAAF4A;
+        font-weight:bold;
+        margin-bottom: 20px;
+    }
+    .add-to-cart {
+        background-color: 	#d40101;
+    padding: 12px 20px;
+    align-items: center;
+    font-size: 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 30px;
+    color:#023F2F;
+    
+    font-weight: bold;
+    font-family: 'Calton',sans-serif;
+        
+    }
+    .add-to-cart:hover {
+        background-color: red;
+    }
+    @media (max-width: 768px) {
+        .product-detail {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+    .card {
+        position: relative;
+        width: 350px;
+        height: 450px;
+        border-radius: 14px;
+        z-index: 1111;
+        overflow: hidden;
+        background-color:#EAAF4A;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 20px 20px 60px black, -20px -20px 60px black;
+        ;
+      }
+      .card:hover {
+        transform: scale(1.05); /* Slightly enlarges the card */
+        box-shadow: 5px 5px 20px #FF4500, -5px -5px 20px #ff8c3b; /* Increases shadow effect */
+    }
+    .card:hover .bg img {
+        transform: scale(1); /* Zoom in slightly */
+    }
+      
+      
+      .bg {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        width: 340px;
+        height: 440px;
+        z-index: 3;
+        border-radius: 10px;
+        overflow: hidden;
+        
+    }
+    
+    .bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures the image fully covers the container */
+    }
+</style>
+
+<div class="product-detail">
+    <div class="card">
+        <div class="bg">
+            {% for image in product.images.all %}
+                {% if image.is_feature %}
+                    
+                        <img src="{{ image.image.url }}" alt="{{ product.title }} Featured Image">
+                    
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="blob"></div>
+    </div>
+    <div class="product-info">
+        <h1 class="product-title">{{ product.title }}</h1>
+        <p class="product-price">Rs {{ product.price }}</p>
+        <p class="product-description">{{ product.description }}</p>
+        <a href="{% url 'store:order' product.id%}" class="add-to-cart">Order Now</a>
+    </div>
+</div>
+
+{% endblock %}

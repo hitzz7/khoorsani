@@ -1,0 +1,316 @@
+{% extends './navbar.html' %}
+{% load static %}
+
+{% block title %}{{ product.title }}{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: black;
+        color: white;
+    }
+
+    .order-section {
+        padding: 50px 20px;
+        text-align: center;
+    }
+
+    .order-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background: #111;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+    }
+
+    h2 {
+        font-size: 32px;
+        color: white;
+        margin-bottom: 20px;
+    }
+
+    .product-info {
+        font-size: 18px;
+        color: #ccc;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+        font-size: 18px;
+    }
+
+    .form-group label {
+        margin-bottom: 8px;
+        display: block;
+        font-size:34px;
+        font-weight: bold;
+        color:red;
+        text-shadow: 0 0 10px #FF4500;
+    }
+
+    .form-group input {
+        width: 95%;
+        padding: 10px;
+        border: 1px solid #444;
+        border-radius: 4px;
+        font-size: 16px;
+        background: #222;
+        color: white;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus {
+        border-color: #0097b2;
+        outline: none;
+    }
+
+    .submit-button {
+        font-size: 18px;
+        padding: 12px;
+        background-color: #d40101;
+        color: white;
+        font-weight: bold;
+        border-radius: 50px;
+        cursor: pointer;
+        width: 100%;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .submit-button:hover {
+        background-color: red;
+    }
+
+</style>
+<style>
+    body {
+        background-color: black;
+        color: white;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .form-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: #111;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+        font-family:"Calton",sans-serif;
+        border-radius: 0px;
+        box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+    }
+    .product-detail {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 1000px;
+        margin: auto;
+        padding: 50px 20px;
+        gap: 40px;
+        margin-top:100px
+    }
+    .product-image img {
+        width: 100%;
+        max-width: 400px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    }
+    .product-info {
+        max-width: 500px;
+        text-align: center;
+    }
+    .product-title {
+        font-size: 52px;
+        margin-bottom: 10px;
+    }
+    .product-price {
+        font-size: 44px;
+        color: #ff4500;
+        margin-bottom: 15px;
+        text-align:center;
+    }
+    .product-description {
+        font-size: 20px;
+        line-height: 1.6;
+        color:#EAAF4A;
+        font-weight:bold;
+        margin-bottom: 20px;
+    }
+    .add-to-cart {
+        background-color: 	#d40101;
+        padding: 12px 20px;
+        align-items: center;
+        font-size: 30px;
+        border-radius: 50px;
+        cursor: pointer;
+        margin-top: 30px;
+        margin-left:320px;
+        color:#023F2F;
+        font-weight: bold;
+        display: inline-block;
+        align-self: center;
+        font-family: 'Calton',sans-serif;
+    }
+    .add-to-cart:hover {
+        background-color: red;
+    }
+    @media (max-width: 768px) {
+        .product-detail {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+    .card {
+        position: relative;
+        width: 350px;
+        height: 450px;
+        border-radius: 14px;
+        z-index: 1111;
+        overflow: hidden;
+        background-color:#EAAF4A;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 20px 20px 60px black, -20px -20px 60px black;
+    }
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 5px 5px 20px #FF4500, -5px -5px 20px #ff8c3b;
+    }
+    .card:hover .bg img {
+        transform: scale(1);
+    }
+    .bg {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        width: 340px;
+        height: 440px;
+        z-index: 3;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    .bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .quantity-container {
+        display: flex;
+        align-items: center;
+        gap: 10px; /* Space between label and dropdown */
+        font-size: 28px;
+        margin:20px;
+        
+        margin-left:60px;
+        font-weight: bold;
+        color: #EAAF4A;
+    }
+    
+    .quantity-container label {
+        font-size: 28px;
+    }
+    
+    .quantity-container select {
+        font-size: 18px;
+        padding: 8px 12px;
+        border: 2px solid #444;
+        background-color: #222;
+        color: #EAAF4A;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .quantity-container select:hover {
+        border-color: #0097b2;
+        box-shadow: 0 0 6px rgba(0, 151, 178, 0.5);
+    }
+    
+    .quantity-container select:focus {
+        outline: none;
+        border-color: #0097b2;
+    }
+    
+</style>
+
+<div class="product-detail" >
+    <div class="card">
+        <div class="bg">
+            {% for image in product.images.all %}
+                {% if image.is_feature %}
+                    <img src="{{ image.image.url }}" alt="{{ product.title }} Featured Image">
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="blob"></div>
+    </div>
+    <div class="product-info">
+        <h1 class="product-title">{{ product.title }}</h1>
+        
+
+        <!-- Quantity input -->
+        <div class="quantity-container">
+    <label for="quantity">Quantity:</label>
+    <select id="quantity" name="quantity" style="font-size: 18px; padding: 5px;">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+    </select>
+</div>
+        <!-- Update price dynamically -->
+        <p class="product-price" id="total-price">Total: Rs {{ product.price }}</p>
+
+        <!-- Order Now button -->
+        
+    </div>
+</div>
+<div class="form-container">
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" id="location" name="location" placeholder="Your Location" required>
+        </div>
+        <div class="form-group">
+            <label for="phone_number">Phone Number</label>
+            <input type="text" id="phone_number" name="phone_number" placeholder="Your Phone Number" required>
+        </div>
+        <button type="submit" class="add-to-cart">Place Order</button>
+    </form>
+</div>
+
+<script>
+    // JavaScript to update the price based on the quantity
+    const quantityInput = document.getElementById('quantity');
+    const priceElement = document.getElementById('price');
+    const totalPriceElement = document.getElementById('total-price');
+    const originalPrice = {{ product.price }}; // Get the original price of the product
+
+    quantityInput.addEventListener('input', function () {
+        const quantity = parseInt(quantityInput.value);
+        if (!isNaN(quantity)) {
+            const totalPrice = originalPrice * quantity;
+            totalPriceElement.textContent = 'Total: Rs ' + totalPrice;
+        }
+    });
+</script>
+
+{% endblock %}

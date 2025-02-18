@@ -1,0 +1,57 @@
+{% extends './navbar.html' %}
+
+
+{% load static %}
+
+{% block title %}Khoorsani Hot Chilli oil{% endblock %}
+
+{% block content %}
+<section class="product-section" style="margin-top:40px;">
+    <h2 class="flame-animation">Best Selling</h2>
+    <svg width="0" height="0">
+        <defs>
+            <filter id="fire">
+                <!-- Turbulence Effect -->
+                <feTurbulence type="fractalNoise" baseFrequency="0.1 0.1" numOctaves="3" seed="3">
+                    <!-- Animate the baseFrequency to create flickering effect -->
+                    <animate attributeName="baseFrequency" 
+                             dur="3s" 
+                             values="0.1 0.1; 0.12 0.2; 0.1 0.1" 
+                             repeatCount="indefinite"/>
+                </feTurbulence>
+    
+                <!-- Displacement Effect -->
+                <feDisplacementMap in="SourceGraphic" scale="10"/>
+            </filter>
+        </defs>
+    </svg>
+    
+    <p class="description">The best spices in Town</p>
+    <div class="product-grid">
+        {% for product in products %}
+        <a href="{% url 'store:product_detail' product.id %}">
+        <div class="product-container">
+            <div class="card">
+                <div class="bg">
+                    {% for image in product.images.all %}
+                        {% if image.is_feature %}
+                            
+                                <img src="{{ image.image.url }}" alt="{{ product.title }} Featured Image">
+                            
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="blob"></div>
+            </div>
+            <h5 class="product-title">{{product.title}}</h5>
+            <p class="product-price">Rs {{product.price}}</p>
+        </div>
+        {% endfor %}
+    
+        
+    </div>
+    
+    
+
+</section>
+{% endblock %}

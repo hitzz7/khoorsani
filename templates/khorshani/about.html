@@ -1,0 +1,41 @@
+{% extends './navbar.html' %}
+{% load static %}
+
+{% block title %}Khoorsani about{% endblock %}
+
+{% block content %}
+
+<div class="services-section"style="margin-top:40px;">
+    
+    <h2 class="flame-animation">About US</h2>
+    <svg width="0" height="0">
+        <defs>
+            <filter id="fire">
+                <!-- Turbulence Effect -->
+                <feTurbulence type="fractalNoise" baseFrequency="0.1 0.1" numOctaves="3" seed="3">
+                    <!-- Animate the baseFrequency to create flickering effect -->
+                    <animate attributeName="baseFrequency" 
+                             dur="3s" 
+                             values="0.1 0.1; 0.12 0.2; 0.1 0.1" 
+                             repeatCount="indefinite"/>
+                </feTurbulence>
+    
+                <!-- Displacement Effect -->
+                <feDisplacementMap in="SourceGraphic" scale="10"/>
+            </filter>
+        </defs>
+    </svg>
+    <div class="service-box">
+        <img src="{% static 'kk.jpg' %}" alt="Service Image" class="service-image">
+        <div class="service-text">
+            <h3>When Spice Meets Art</h3>
+            <p>
+                The best spices in Town. New and ready to make you mingle into the spicy madness.where spices meet art
+                This is a unique blend of spices and art, representing Nepal to the world.
+            </p>
+            
+        </div>
+    </div>
+    <h3>KHORSHANI</h3>
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends './navbar.html' %}
+{% load static %}
+
+{% block title %}Khoorsani ingrediants{% endblock %}
+
+{% block content %}
+
+<section class="ingredient" style="margin-top:40px;">
+    <h2 class="flame-animation">Ingrediants</h2>
+    <svg width="0" height="0">
+        <defs>
+            <filter id="fire">
+                <!-- Turbulence Effect -->
+                <feTurbulence type="fractalNoise" baseFrequency="0.1 0.1" numOctaves="3" seed="3">
+                    <!-- Animate the baseFrequency to create flickering effect -->
+                    <animate attributeName="baseFrequency" 
+                             dur="3s" 
+                             values="0.1 0.1; 0.12 0.2; 0.1 0.1" 
+                             repeatCount="indefinite"/>
+                </feTurbulence>
+    
+                <!-- Displacement Effect -->
+                <feDisplacementMap in="SourceGraphic" scale="10"/>
+            </filter>
+        </defs>
+    </svg>
+    <div class="ingredient-item">
+        <!-- Image Section -->
+        <div class="ingredient-image-container">
+            <img src="{% static 'recip.jpg'%}" alt="Ingredient" class="ingredient-image">
+        </div>
+
+        <!-- Content Section (Text and List) -->
+        <div class="ingredient-text">
+            <p class="description">When Spice Meets Art</p>
+            <p class="ingredient-description">Hot chili oil is a flavorful and aromatic condiment commonly used in various cuisines, particularly in Asian dishes.This aromatic blend of chilli flakes, spices and oil which gives it a fiery kick and a complex depth of flavor .Typically, the oil is made by heating the oil with these ingredients until the oil absorbs their rich essence.
+                
+            </p>
+            
+        </div>
+
+    </div>
+    <p class="ingredient-description">Ingrediants used in our Akabare Hot chilli oil?</p>
+
+    <!-- Ingredient List Section (Centered below) -->
+    <ul class="ingredient-list">
+        <li><i class="fas fa-apple-alt" aria-hidden="true"></i>  Khoorsani</li> <!-- Apple icon for tomatoes -->
+        <li><i class="fas fa-pepper-hot" aria-hidden="true"></i> Garlic</li> <!-- Hot pepper icon for garlic -->
+        <li><i class="fas fa-oil-can" aria-hidden="true"></i> mustard Oil</li> <!-- Oil can icon for olive oil -->
+        <li><i class="fas fa-cogs" aria-hidden="true"></i> ginger</li> <!-- Gear icon for onions (or choose another) -->
+    </ul>
+</section>
+{% endblock %}

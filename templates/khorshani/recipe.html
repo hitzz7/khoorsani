@@ -1,0 +1,219 @@
+{% extends './navbar.html' %}
+{% load static %}
+
+{% block title %}Khoorsani recipe{% endblock %}
+
+{% block content %}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        
+    }
+
+    body {
+        background-color: black;
+        color: white;
+        padding: 20px;
+    }
+
+    .recipe-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        max-width: 1000px;
+        margin: auto;
+        margin-top:150px;
+    }
+
+    .video-container {
+        flex: 1;
+        min-width: 300px;
+        max-width: 500px;
+        
+        
+    }
+
+    .video-container video {
+        width: 100%;
+        height: 700px;
+        border-radius: 10px;
+    }
+
+    .recipe-details {
+        flex: 1;
+        min-width: 300px;
+        padding: 20px;
+        background: #111;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    }
+
+    h1 {
+        font-size: 28px;
+        color:red;
+        margin-bottom: 15px;
+        text-shadow: 0 0 10px #FF4500;
+        font-family:"bold",sans-serif;
+    }
+
+    .ingredients {
+        list-style: none;
+        padding: 0;
+    }
+
+    .ingredients li {
+        font-size: 18px;
+        color:#EAAF4A;
+        padding: 8px 0;
+        border-bottom: 1px solid #333;
+    }
+
+    .steps {
+        margin-top: 20px;
+        
+    }
+
+    .steps p {
+        font-size: 18px;
+        color: #EAAF4A !important;
+        line-height: 1.6;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .recipe-container {
+            flex-direction: column;
+        }
+    }
+    
+    
+</style>
+
+<h2 class="flame-animation" style="margin-top:130px; margin-left:580px;">Recipes</h2>
+<svg width="0" height="0">
+    <defs>
+        <filter id="fire">
+            <!-- Turbulence Effect -->
+            <feTurbulence type="fractalNoise" baseFrequency="0.1 0.1" numOctaves="3" seed="3">
+                <!-- Animate the baseFrequency to create flickering effect -->
+                <animate attributeName="baseFrequency" 
+                         dur="3s" 
+                         values="0.1 0.1; 0.12 0.2; 0.1 0.1" 
+                         repeatCount="indefinite"/>
+            </feTurbulence>
+
+            <!-- Displacement Effect -->
+            <feDisplacementMap in="SourceGraphic" scale="10"/>
+        </filter>
+    </defs>
+</svg>
+<div class="recipe-container">
+   
+    <!-- Video Section -->
+    <div class="video-container">
+        <video controls>
+            <source src="{% static 'noodle.mp4'%}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Recipe Details -->
+    <div class="recipe-details">
+        <h1>Chilli Noodle Recipe</h1>
+
+        <h2>Ingredients:</h2>
+        <ul class="ingredients">
+            <li>1 pack Noodles</li>
+            <li>2 tbsp Chilli Oil</li>
+            <li>1 tbsp Mustard Oil</li>
+            <li>1 tsp Garlic (minced)</li>
+            <li>1 tsp Ginger (grated)</li>
+            <li>1 tsp Soy Sauce</li>
+            <li>1/2 tsp Salt</li>
+            <li>1/2 tsp Black Pepper</li>
+        </ul>
+
+        <div class="steps">
+
+            <h2>Instructions:</h2>
+            <p>1. Boil the noodles as per the package instructions and drain.</p>
+            <p>2. Heat oil in a pan, add garlic and stir-fry vegetables.</p>
+            <p>3. Add the noodles, chilli oil, soy sauce, salt, and pepper.</p>
+            <p>4. Toss everything together and stir-fry for 2 minutes.</p>
+            <p>5. Serve hot and enjoy!</p>
+        </div>
+    </div>
+</div>
+<div class="recipe-container">
+   
+    <!-- Video Section -->
+    <div class="video-container">
+        <video controls>
+            <source src="{% static 'chowmin.mp4'%}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Recipe Details -->
+    <div class="recipe-details">
+        <h1>Chowmin</h1>
+
+        <h2>Ingredients:</h2>
+        <ul class="ingredients">
+            <li>1 pack Noodles</li>
+            <li>2 tbsp Vegetable Oil</li>
+            <li>1/2 cup Vegetables (carrot, peas, beans, etc.)</li>
+            <li>1 tsp Soy Sauce</li>
+            <li>1 tsp Salt</li>
+            <li>1/2 tsp Black Pepper</li>
+        </ul>
+        <div class="steps">
+            <h2>Instructions:</h2>
+            <p>1. Boil the noodles and set them aside.</p>
+            <p>2. Heat oil in a pan and add vegetables, stir-fry until soft.</p>
+            <p>3. Add boiled noodles, soy sauce, salt, and pepper.</p>
+            <p>4. Stir-fry everything for 2-3 minutes.</p>
+            <p>5. Serve hot and enjoy!</p>
+        </div>
+    </div>
+</div>
+<div class="recipe-container">
+   
+    <!-- Video Section -->
+    <div class="video-container">
+        <video controls>
+            <source src="{% static 'vat.mp4'%}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Recipe Details -->
+    <div class="recipe-details">
+        <h1>Thaklai Rice Recipe</h1>
+
+        <h2>Ingredients:</h2>
+        <ul class="ingredients">
+            <li>1 cup Rice</li>
+            <li>1 tbsp Ghee</li>
+            <li>1 tsp Cumin Seeds</li>
+            <li>1 tsp Salt</li>
+            <li>1/2 tsp Turmeric Powder</li>
+            <li>1/2 tsp Black Pepper</li>
+            <li>Water</li>
+        </ul>
+        <div class="steps">
+            <h2>Instructions:</h2>
+            <p>1. Wash rice thoroughly and drain.</p>
+            <p>2. Heat ghee in a pan and add cumin seeds.</p>
+            <p>3. Add rice, salt, turmeric powder, black pepper, and water.</p>
+            <p>4. Cook on low heat until the rice is tender and water is absorbed.</p>
+            <p>5. Fluff and serve hot!</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
