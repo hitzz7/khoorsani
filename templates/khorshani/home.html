@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="bg-image">
-    <video id="video" autoplay muted loop>
+    <video id="video" autoplay muted loop preload="metadata">
         <source src="{% static 'video1.mp4' %}" type="video/mp4">
         Your browser does not support the video tag.
     </video>
@@ -26,11 +26,11 @@
         <defs>
             <filter id="fire">
                 <!-- Turbulence Effect -->
-                <feTurbulence type="fractalNoise" baseFrequency="0.1 0.1" numOctaves="3" seed="3">
+                <feTurbulence type="fractalNoise" baseFrequency="0.08 0.08" numOctaves="2" seed="3">
                     <!-- Animate the baseFrequency to create flickering effect -->
                     <animate attributeName="baseFrequency" 
                              dur="3s" 
-                             values="0.1 0.1; 0.12 0.2; 0.1 0.1" 
+                             values="0.08 0.08; 0.1 0.15; 0.08 0.08" 
                              repeatCount="indefinite"/>
                 </feTurbulence>
     
@@ -203,21 +203,6 @@
     
     
     
-</script>
-<script>
-    const video = document.getElementById('video');
-
-    // Unmute video on user interaction (click, tap, etc.)
-    {% comment %} window.addEventListener('click', function() {
-        video.muted = false;
-    }); {% endcomment %}
-
-    // Mute video on scroll
-    window.addEventListener('scroll', function() {
-        if (window.scrollY >= 700) {  // Check if the scroll position is >= 500px
-            video.muted = true;  // Mute the video
-        }
-    });
 </script>
 
     

@@ -162,36 +162,40 @@
     
 </script>
 <script>
+    const header = document.querySelector('.header');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 0) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
     document.addEventListener("DOMContentLoaded", () => {
         const body = document.body;
-        const header = document.querySelector(".header");
+        const header = document.querySelector('header');
         
         let lastScroll = 0;
         
         window.addEventListener("scroll", () => {
             const currentScroll = window.pageYOffset;
-            
+    
             if (currentScroll <= 0) {
-                body.classList.remove("scroll-up", "scroll-down");
-                header.classList.remove("scrolled");
-            } 
-            else if (currentScroll > lastScroll) {
-                // Scrolling down - hide header
-                if (!body.classList.contains("scroll-down")) {
-                    body.classList.add("scroll-down");
+                body.classList.remove("scroll-up");
+            } else if (currentScroll > lastScroll && !body.classList.contains("scroll-down")) {
+                if (currentScroll > header.offsetHeight) {
                     body.classList.remove("scroll-up");
+                    body.classList.add("scroll-down");
                 }
-            } 
-            else {
-                // Scrolling up - show header immediately
+            } else if (currentScroll < lastScroll && body.classList.contains("scroll-down")) {
                 body.classList.remove("scroll-down");
                 body.classList.add("scroll-up");
-                header.classList.add("scrolled");
             }
-            
+    
             lastScroll = currentScroll;
         });
     });
+    
     
 
     
